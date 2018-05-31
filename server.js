@@ -6,7 +6,7 @@ var path = require('path');
 
 app.use('/', express.static(path.join(__dirname,"public")));
 
-mongoose.connect('mongodb://localhost/bears');
+mongoose.connect('mongodb://heroku_9b4fjj5l:tfp5rb4o01j72iohbq7fvslh69@ds113775.mlab.com:13775/heroku_9b4fjj5l');
 
 var Bear = require("./models/bear.js");
 
