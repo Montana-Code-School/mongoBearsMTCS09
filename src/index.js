@@ -1,5 +1,7 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { render } from "react-dom";
+import TestForm from "./TestForm";
+import t from "tcomb-form";
 
 class Index extends React.Component {
   constructor() {
@@ -55,6 +57,7 @@ class Index extends React.Component {
 
     return (
       <div>
+        <TestForm />
         {BearComponents}
         <button
           onClick={this.btnClick}
@@ -62,26 +65,7 @@ class Index extends React.Component {
           id="clickMe" type="button"
           name="findBears">Show All of the BEARS!
         </button>
-        <div className="input-group">
-          <input
-             type="text"
-             className="form-control"
-             placeholder="Name Your Bear"
-             aria-describedby="basic-addon2"
-             data-type="name"
-             onChange={this.updateBear}
-           />
-        </div>
-        <div className="input-group">
-          <input
-             type="text"
-             className="form-control"
-             placeholder="What's your bear's age?"
-             aria-describedby="basic-addon2"
-             data-type="age"
-             onChange={this.updateBear}
-           />
-        </div>
+
       </div>
     )
   }
@@ -89,4 +73,4 @@ class Index extends React.Component {
 
 
 
-ReactDOM.render(<Index/>, document.getElementById("root"));
+render(<Index/>, document.getElementById("root"));
