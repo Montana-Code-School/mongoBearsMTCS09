@@ -10,13 +10,22 @@ class Index extends React.Component {
       bears: []
     }
 
-    this.btnClick = this.btnClick.bind(this);
+    this.getBears = this.getBears.bind(this);
+    this.showBears = this.showBears.bind(this);
   }
 
-  btnClick() {
+  getBears() {
     fetch('http://localhost:3000/api/bears')
       .then(res => res.json())
       .then(data => this.setState({bears:data}))
+  }
+
+  showBears() {
+    if(document.getElementById("showBears").style.display === "block") {
+      document.getElementById("showBears").style.display = "none";
+    } else {
+    document.getElementById("showBears").style.display = "block";
+    }
   }
 
   render () {
@@ -33,14 +42,26 @@ class Index extends React.Component {
 
     return (
       <div>
+      <div>
         <TestForm />
-        {BearComponents}
-        <button
-          onClick={this.btnClick}
-          className="btn btn-danger"
-          id="clickMe" type="button"
-          name="findBears">Show All of the BEARS!
-        </button>
+      </div>
+        <div id = "showBears" style={{ display: "none" }}>
+          {BearComponents}
+        </div>
+        <div>
+          <button
+            onClick={this.getBears}
+            className="btn btn-danger"
+            id="clickMe" type="button"
+            name="findBears">Get All of the BEARS!
+          </button>
+          <button
+            onClick={this.showBears}
+            className="btn btn-danger"
+            id="showBears" type="button"
+            name="findBears">Show All of the BEARS!
+          </button>
+        </div>
       </div>
     )
   }
