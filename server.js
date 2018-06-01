@@ -75,7 +75,6 @@ router.route("/bears/:bear_id")
       for (key in req.body) {
         bear[key] = req.body[key];
       }
-      // bear.name = req.body.name;
 
       bear.save(function(err) {
         if (err)

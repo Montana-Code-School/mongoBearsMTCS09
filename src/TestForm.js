@@ -42,7 +42,7 @@ export default class TestForm extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.onSubmit}>
+      <form id="bearForm" onSubmit={this.onSubmit}>
         <Form ref="form" type={BearFormSchema} />
         <div className="form-group">
           <button type="submit" className="btn btn-danger">Save</button>
