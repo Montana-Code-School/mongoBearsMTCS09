@@ -7,25 +7,24 @@ class Index extends React.Component {
   constructor() {
     super()
     this.state = {
+      isHidden: false,
       bears: []
     }
 
-    this.getBears = this.getBears.bind(this);
     this.showBears = this.showBears.bind(this);
-  }
 
-  getBears() {
-    fetch('http://localhost:3000/api/bears')
-      .then(res => res.json())
-      .then(data => this.setState({bears:data}))
   }
 
   showBears() {
-    if(document.getElementById("showBears").style.display === "block") {
-      document.getElementById("showBears").style.display = "none";
-    } else {
-    document.getElementById("showBears").style.display = "block";
-    }
+    this.setState({
+      isHidden:!this.state.isHidden
+    })
+  }
+
+  componentDidMount() {
+    fetch('http://localhost:3000/api/bears')
+      .then(res => res.json())
+      .then(data => this.setState({bears:data}))
   }
 
   render () {
@@ -39,27 +38,22 @@ class Index extends React.Component {
       <li>{bear.isFriendly ? "Friendly" : "Not Friendly"}</li>
     </ul>
   )
-
+    let showBearsStyle = this.state.isHidden ? { display: "block" } :{ display: "none" };
+    let bearText = this.state.isHidden ? "Hide All of the BEARS!" : "Show All of the BEARS!";
     return (
       <div>
       <div>
         <TestForm />
       </div>
-        <div id = "showBears" style={{ display: "none" }}>
+        <div id = "showBears" style={showBearsStyle}>
           {BearComponents}
         </div>
         <div>
           <button
-            onClick={this.getBears}
-            className="btn btn-danger"
-            id="clickMe" type="button"
-            name="findBears">Get All of the BEARS!
-          </button>
-          <button
             onClick={this.showBears}
             className="btn btn-danger"
             id="showBears" type="button"
-            name="findBears">Show All of the BEARS!
+            name="findBears">{bearText}
           </button>
         </div>
       </div>
