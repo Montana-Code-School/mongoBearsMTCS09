@@ -71,6 +71,4 @@ class Index extends React.Component {
   }
 }
 
-
-
 render(<Index/>, document.getElementById("root"));

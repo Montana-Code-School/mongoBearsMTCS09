@@ -24,6 +24,7 @@ const BearFormSchema = t.struct({
 export default class TestForm extends React.Component {
   constructor(props) {
     super(props)
+
     this.onSubmit = this.onSubmit.bind(this);
   }
 
@@ -31,7 +32,19 @@ export default class TestForm extends React.Component {
     evt.preventDefault()
     const value = this.refs.form.getValue()
     if (value) {
-      console.log(value);
+      // do a post
+      fetch(
+        'http://localhost:3000/api/bears',
+        {
+          method: 'POST',
+          headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({value})
+        })
+        .then( ( res ) => {return res.json()})
+        .then( data => console.log(data));
     }
   }
 
