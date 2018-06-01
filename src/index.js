@@ -7,34 +7,10 @@ class Index extends React.Component {
   constructor() {
     super()
     this.state = {
-      bears: [],
-      currentBear: {
-        name: "",
-        age: 0,
-        species: "",
-        color: "",
-        isHibernating: false,
-        isFriendly: false
-      }
+      bears: []
     }
 
     this.btnClick = this.btnClick.bind(this);
-    this.updateBear = this.updateBear.bind(this);
-  }
-
-  updateBear(event) {
-    let bear = this.state.currentBear;
-    // if (event.target.dataset.type === "name") {
-    //   bear.name = event.target.value;
-    // } else if (event.target.dataset.type === "age") {
-    //   bear.age = event.target.value;
-    // }
-    bear[event.target.dataset.type] = event.target.value;
-
-    this.setState({
-      currentBear: bear
-    })
-    console.log(this.state.currentBear);
   }
 
   btnClick() {
@@ -44,14 +20,14 @@ class Index extends React.Component {
   }
 
   render () {
-  let BearComponents = this.state.bears.map((bear) =>
-    <ul>
+  let BearComponents = this.state.bears.map((bear, index) =>
+    <ul key={index}>
       <li>Name: {bear.name}</li>
       <li>Species: {bear.species}</li>
       <li>Color: {bear.color}</li>
       <li>Age: {bear.age}</li>
       <li>{bear.isHibernating ? "Hibernating" : "Not Hibernating"}</li>
-      <li> {bear.isFriendly ? "Friendly" : "Not Friendly"}</li>
+      <li>{bear.isFriendly ? "Friendly" : "Not Friendly"}</li>
     </ul>
   )
 
@@ -65,7 +41,6 @@ class Index extends React.Component {
           id="clickMe" type="button"
           name="findBears">Show All of the BEARS!
         </button>
-
       </div>
     )
   }

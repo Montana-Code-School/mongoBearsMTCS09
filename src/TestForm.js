@@ -1,15 +1,7 @@
 import React from "react";
 import t from "tcomb-form";
 
-
 const Form = t.form.Form;
-
-//
-// const FormSchema = t.struct({
-//   name: t.String,         // a required string
-//   age: t.maybe(t.Number), // an optional number
-//   rememberMe: t.Boolean   // a boolean
-// })
 
 const BearFormSchema = t.struct({
   name: t.String,
