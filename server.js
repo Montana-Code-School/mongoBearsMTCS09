@@ -36,17 +36,9 @@ router.route('/bears')
 
   .post(function(req, res) {
     var bear = new Bear();
-    for (key in req.body) {
-      bear[key] = req.body[key];
+    for (key in req.body.value) {
+      bear[key] = req.body.value[key];
     }
-    // bear.name = req.body.name;
-    // bear.age = req.body.age;
-    // bear.color = req.body.color;
-    // bear.species = req.body.species;
-    // bear.isHibernating = req.body.isHibernating;
-    // bear.isFriendly = req.body.isFriendly;
-
-
     bear.save(function(err) {
       if (err)
         res.send(err);
@@ -83,7 +75,6 @@ router.route("/bears/:bear_id")
       for (key in req.body) {
         bear[key] = req.body[key];
       }
-      // bear.name = req.body.name;
 
       bear.save(function(err) {
         if (err)
